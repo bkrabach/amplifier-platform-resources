@@ -18,6 +18,24 @@ and older encoded-body representations. Decoding a body is not authorization
 to read it or proof that it matches its recorded hash; those checks remain with
 the caller. The existing imports and stored formats are unchanged.
 
+## Ecosystem map
+
+[Project overview](https://microsoft.github.io/amplifier-constellation/projects/amplifier-platform-resources/) ·
+[Open the map](https://github.com/bkrabach/amplifier-platform-resources/blob/main/docs/ecosystem-map.svg) ·
+[Map guide](https://github.com/microsoft/amplifier-constellation/blob/main/docs/ecosystem-maps.md)
+
+![Supporting package responsibilities and the surrounding ecosystem](https://raw.githubusercontent.com/bkrabach/amplifier-platform-resources/main/docs/ecosystem-map.svg)
+
+<details>
+<summary>The wider Constellation ecosystem</summary>
+
+![Constellation's five roles and their relationships](https://raw.githubusercontent.com/microsoft/amplifier-constellation/main/site/assets/art/building-blocks.png)
+
+</details>
+
+These maps are generated from the [canonical registry](https://github.com/microsoft/amplifier-constellation/blob/main/docs/ecosystem/registry.json).
+Update that source and refresh the local maps together; a map is not a release or compatibility claim.
+
 ## Develop and qualify
 
 Use Python 3.13 or newer with SQLite JSON functions, Git on `PATH`, and `uv`.
