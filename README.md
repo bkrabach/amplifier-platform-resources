@@ -42,7 +42,7 @@ artifact into its own distribution; author changes do not refresh that selection
 would claim the same import package. Repository delivery and the broader
 resource-lifecycle boundary remain separate decisions.
 
-In the Unified checkout, [the output guide](../../docs/OUTPUTS.md) describes host
+In the Unified checkout, [the output guide](https://github.com/microsoft/amplifier-unified/blob/559d388ae4cefbedc048b8af54c72b94216b4e18/docs/OUTPUTS.md) describes host
 actions, resource retention, authorization and integration behavior. Its host
 tests remain with Unified; the standalone tests do not establish those promises.
 
