@@ -1,0 +1,91 @@
+{
+  "audience": "Developers embedding the documented Python library",
+  "citations": [
+    {
+      "path": "README.md",
+      "ref": "2d433117d001af9e92ecd39bd89114e8603dc1be",
+      "sha256": "dbf9928ba380fe4c65f9bd3bd846b67885019f5d139bcf6b46289c7e4e473db4",
+      "url": "https://github.com/bkrabach/amplifier-platform-resources/blob/2d433117d001af9e92ecd39bd89114e8603dc1be/README.md"
+    },
+    {
+      "path": "PROVENANCE.json",
+      "ref": "2d433117d001af9e92ecd39bd89114e8603dc1be",
+      "sha256": "476b0257b41b5fd8b7bd895e4e752a682e74f34f2a64f206333e4eb4ef0e8da4",
+      "url": "https://github.com/bkrabach/amplifier-platform-resources/blob/2d433117d001af9e92ecd39bd89114e8603dc1be/PROVENANCE.json"
+    },
+    {
+      "path": "pyproject.toml",
+      "ref": "2d433117d001af9e92ecd39bd89114e8603dc1be",
+      "sha256": "354abd85b5f528f58e37fe1af5460b8e88efd910a0fb9a1e3ae8f371620fab0c",
+      "url": "https://github.com/bkrabach/amplifier-platform-resources/blob/2d433117d001af9e92ecd39bd89114e8603dc1be/pyproject.toml"
+    }
+  ],
+  "display_name": "Amplifier Platform Resources",
+  "edges": [
+    {
+      "from": "caller",
+      "relation": "uses",
+      "to": "self"
+    },
+    {
+      "from": "self",
+      "relation": "contains",
+      "to": "part-0"
+    },
+    {
+      "from": "self",
+      "relation": "contains",
+      "to": "part-1"
+    },
+    {
+      "from": "self",
+      "relation": "contains",
+      "to": "part-2"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "self",
+      "kind": "self",
+      "label": "Amplifier Platform Resources",
+      "repository": "bkrabach/amplifier-platform-resources"
+    },
+    {
+      "id": "caller",
+      "kind": "external",
+      "label": "Calling application (Python API)"
+    },
+    {
+      "id": "part-0",
+      "kind": "internal",
+      "label": "Output relationship registry"
+    },
+    {
+      "id": "part-1",
+      "kind": "internal",
+      "label": "Saved-body decoder"
+    },
+    {
+      "id": "part-2",
+      "kind": "internal",
+      "label": "Read-only Git review"
+    }
+  ],
+  "notes": [
+    "This is an independent open-source package hosted by bkrabach, not a Microsoft component in the Constellation family index.",
+    "The public source import preserves its Unified provenance. Source ownership, publication and consumer artifact selection are separate reviewed steps; this listing does not change an existing selection.",
+    "The installed package is amplifier-outputs. It does not implement the broader resources store or replace the separate resources capability; unlinking a relationship does not delete retained content."
+  ],
+  "page_kind": "supporting library",
+  "purpose": "Track output relationships, decode saved bodies and inspect Git changes. An independent Python library.",
+  "ref": "2d433117d001af9e92ecd39bd89114e8603dc1be",
+  "repository": "bkrabach/amplifier-platform-resources",
+  "roles": [],
+  "start_cta": {
+    "label": "Read the library guide",
+    "url": "https://github.com/bkrabach/amplifier-platform-resources/blob/2d433117d001af9e92ecd39bd89114e8603dc1be/README.md#develop-and-qualify"
+  },
+  "summary": "Output relationships, historical body decoding and read-only Git review evidence support a calling application. The caller owns content storage, integrity, transactions and authorization.",
+  "supports_roles": [],
+  "visibility": "public"
+}
