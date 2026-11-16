@@ -46,49 +46,40 @@ In the Unified checkout, [the output guide](../../docs/OUTPUTS.md) describes hos
 actions, resource retention, authorization and integration behavior. Its host
 tests remain with Unified; the standalone tests do not establish those promises.
 
-## Independent artifact delivery
+## Ownership and provenance
 
-The `Outputs package` workflow builds one wheel and source distribution from an
-exact selected commit, then runs the existing Git/SQLite tests against that wheel
-in a separate Linux environment outside the checkout. It copies both `tests/` and
-`pyproject.toml` so the package's asynchronous test configuration remains active.
+This history-preserving project is prepared as the public author home at
+`bkrabach/amplifier-platform-resources`, with a later transfer to Microsoft planned.
+[PROVENANCE.json](PROVENANCE.json) records the original public Unified source,
+pre-move history, and exact imported runtime/test bytes. Original MIT attribution
+is preserved. The repository name does not rename the `amplifier-outputs`
+distribution or `amplifier_outputs` import.
 
-After review and merge, the release owner can dispatch `outputs-release.yml` on
-`main` with the full merged commit SHA. The workflow publishes those same original
-artifacts under `outputs-vX.Y.Z`, alongside `outputs-source.json` and `SHA256SUMS`.
-The receipt binds the source revision, project tree and files to the artifact
-bytes. Component publication leaves the application's latest release unchanged
-and does not select a new Unified dependency or refresh its bundled sources.
+This import changes no runtime behavior, dependency requirement, package version,
+or maintained test. Unified retains its host integration and policy. Authoring
+handoff and consumer selection are separate reviewed changes; retire Unified’s
+authored project at handoff rather than maintain two authoring copies.
 
-Existing tags and assets are never replaced. To resume an interrupted publication,
-rerun the failed publication job with its original build artifacts. A full rebuild
-may produce different archive bytes and is not an exact-byte retry. Once a release
-exists, download and verify its receipt and checksums before installing its wheel
-in a standalone environment. Independently selected Unified delivery remains a
-separate adoption step.
+This is the existing Python outputs mechanism, not the whole resources domain.
+It does not replace the separate JavaScript
+`microsoft/amplifier-unified-capability-resources` authoritative store.
 
-## Unified artifact selection
+Use a separate environment for this distribution. Do not coinstall it with
+`amplifier-unified`, which currently owns its selected `amplifier_outputs` files.
+This source import is not independent pip replacement inside a Unified prefix.
 
-From the Unified repository, select the four verified public release assets with
-the published receipt's exact revision and checksum:
+## Existing delivery and future publication
 
-```sh
-python scripts/scheduling_delivery.py select --component outputs \
-  --dist /path/to/verified-release-assets \
-  --revision 51551349e1cf437a40318e220dcd50e59680d4ef \
-  --receipt-sha256 bc652d4bc87fa119faa6e66c98e61b33f0346923ed4aaf1928b98f8a2ff88456
-python scripts/scheduling_delivery.py verify --component outputs
-```
+Unified continues to select the immutable [outputs-v0.1.0 artifacts](https://github.com/microsoft/amplifier-unified/releases/tag/outputs-v0.1.0)
+from their original public producer. The original source receipt, revision,
+subdirectory and hashes remain historical identities; this repository does not
+republish or relabel those artifacts. Unified’s generated `components/outputs-delivery/`
+is selected by `components/outputs.source.json` and verified offline during
+normal builds. Do not edit that generated copy by hand.
 
-The selection creates `components/outputs-delivery/` and
-`components/outputs.source.json`. Never edit the generated copy by hand. Normal
-wheel, source-distribution and editable builds verify it offline; they do not
-fetch artifacts or consult this author tree. Unified includes only the selected
-runtime package, provenance and license, with no standalone outputs distribution.
-The package's mechanism tests continue to run against its own authored wheel in
-the independent publisher; Unified keeps the host integration tests.
-
-Qualify the installed app before adopting a new selection. Ordinary app replacement
-or rollback changes the selected code without migrating output relationships,
-receipts or retained bodies. Transactions, authorization and retention remain
-with the host.
+The [package workflow](.github/workflows/package.yml) builds one wheel and source
+archive, then tests that wheel outside the checkout. It does not publish a release
+or change any consumer. A future publication needs an exact source/artifact
+receipt and review of Unified’s selector for this repository-root project layout;
+the existing selector identifies historical monorepo subdirectories. Source moves
+do not reserve a new version or make the original receipts invalid.
