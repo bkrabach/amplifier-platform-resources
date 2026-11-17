@@ -86,7 +86,7 @@ Use a separate environment for this distribution. Do not coinstall it with
 `amplifier-unified`, which currently owns its selected `amplifier_outputs` files.
 This source import is not independent pip replacement inside a Unified prefix.
 
-## Existing delivery and future publication
+## Independent artifact publication
 
 Unified continues to select the immutable [outputs-v0.1.0 artifacts](https://github.com/microsoft/amplifier-unified/releases/tag/outputs-v0.1.0)
 from their original public producer. The original source receipt, revision,
@@ -95,12 +95,46 @@ republish or relabel those artifacts. Unified’s generated `components/outputs-
 is selected by `components/outputs.source.json` and verified offline during
 normal builds. Do not edit that generated copy by hand.
 
-The [package workflow](.github/workflows/package.yml) builds one wheel and source
-archive, then tests that wheel outside the checkout. It does not publish a release
-or change any consumer. A future publication needs an exact source/artifact
-receipt and review of Unified’s selector for this repository-root project layout;
-the existing selector identifies historical monorepo subdirectories. Source moves
-do not reserve a new version or make the original receipts invalid.
+The [package workflow](.github/workflows/package.yml) builds and verifies one wheel
+and source archive from an exact selected commit, then tests the installed wheel
+outside the checkout. Its Linux/Python 3.13 check retains the existing async Git
+and SQLite cases; the pytest-asyncio plugin is loaded explicitly. Publication is
+separate from source acceptance and Unified selection.
+
+After review and merge, the release owner can dispatch `package.yml` from `main`
+with the full merged revision and `publish=true`. The workflow publishes only
+`amplifier_outputs-X.Y.Z-py3-none-any.whl`, `amplifier_outputs-X.Y.Z.tar.gz`,
+`outputs-source.json`, and `SHA256SUMS` under `outputs-vX.Y.Z`. Pull requests and
+ordinary pushes do not publish. Version 0.1.0, the `amplifier-outputs` distribution
+and `amplifier_outputs` imports are unchanged by this producer setup.
+
+The receipt declares component `outputs`, repository
+`bkrabach/amplifier-platform-resources`, root subdirectory `.`, full source revision
+and tree, exact package inputs, and original artifact hashes. The wheel contains
+only the existing runtime and its metadata/license. The source archive also
+preserves tests, documentation and provenance; release automation is bound by the
+root tree without becoming another installed package.
+
+Tags and assets are immutable. Retain the original four build assets after a
+failed or cancelled publication response, inspect their saved remote state, then
+explicitly rerun only the publication job. The producer reconciles the same tag,
+release ID and bytes; it never overwrites mismatches or automatically retries an
+uncertain mutation. A completed retry only verifies the original release.
+
+Download all four assets into an owned directory and verify `SHA256SUMS` and the
+source receipt before standalone installation. For local artifact qualification,
+use the source-bound helper (substitute exact paths and the full source revision):
+
+```sh
+python scripts/release.py seal --revision FULL_SOURCE_SHA --dist /path/to/dist --qualification
+python scripts/release.py verify --revision FULL_SOURCE_SHA --dist /path/to/dist --qualification
+```
+
+The qualification flag permits an unmerged build; it cannot publish. Unified must
+explicitly select and qualify the new root-layout receipt before retiring its
+author copy and shipping these public artifacts. Prior Microsoft receipts, app
+rollback and newer user state retain their original meaning. This delivery change
+adds no resource-store, media, retention or authorization policy.
 
 ## Project guidance
 
